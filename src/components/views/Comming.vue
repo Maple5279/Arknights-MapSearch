@@ -9,10 +9,10 @@
 
 <style scoped lang="less">
 .content {
-    height: 400px;
-    width: 300px;
+    height: 480px;
+    width: 360px;
     position: fixed;
-    top: 0;
+    top: -100px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -42,6 +42,8 @@
         bottom: 40px;
         margin: auto;
 
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
         width: 75%;
         border-radius: 13px;
         height: 40px;
@@ -60,18 +62,19 @@
 
 .authorMsg {
     position: fixed;
-    right: 10px;
-    bottom: 10px;
+    left: 50%;
+    //right: 10px;
+    bottom: 100px;
     margin: auto;
-    font-size: 10px;
+    font-size: 3em;
+    transform: translateX(-50%);
 }
 </style>
 
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue';
+import {onMounted, onBeforeUnmount, ref, computed} from 'vue';
 import { useRouter } from 'vue-router';
-
 let router = useRouter();
 let ribbon: any = document.getElementById('bgCanvas');
 
@@ -91,4 +94,21 @@ function startSearch(){
         router.push('/search');
     },200);
 }
+
+
+const isPc = computed(() => {
+  let ua = window.navigator.userAgent,
+      agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPod', 'iPad'],
+      isPC = true;
+  for (let i = 0, len = agents.length; i < len; i++) {
+    if (ua.indexOf(agents[i]) > 0) {
+      // 如果找到一个手机标识, 就设置为false并跳出循环
+      isPC = false;
+      break;
+    }
+  }
+  return isPC
+})
+
+
 </script>

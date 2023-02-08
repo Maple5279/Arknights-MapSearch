@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 
+
 export default createStore({
     state: {
         mapList: ['树林之主', '参差林木', '伐木征税', '吝啬陷阱', '林中寻宝', '互惠互利',
